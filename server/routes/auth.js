@@ -18,7 +18,7 @@ const login = (req, user) => {
 };
 
 router.post("/signup", (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password, favourites } = req.body;
 
   if (!username || !password) {
     next(new Error("You must provide valid credentials"));

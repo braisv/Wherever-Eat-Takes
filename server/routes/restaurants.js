@@ -1,5 +1,6 @@
 const express = require('express');
 const restaurantsRouter = express.Router();
+const Restaurant = require("../models/Restaurant")
 
 restaurantsRouter.post('/new', (req, res, next) => {
   const { name, neighborhood, photograph, location, image, cuisine_type, timetable, reviews } = req.body;
@@ -8,7 +9,7 @@ restaurantsRouter.post('/new', (req, res, next) => {
     .then((newRestaurant) => {
       Restaurant
         .findById(newRestaurant._id)
-        .then(theNewGame => res.json(theNewGame))
+        .then(theNewRestaurant => res.json(theNewRestaurant))
     })
 });
 

@@ -1,0 +1,33 @@
+nav {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  background: #fff;
+
+  .container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 3.5vh;
+    height: 5vh;
+  }
+
+    p {
+      font-size: 2.4rem;
+      font-weight: bold;
+      margin: 0 20px;
+      background: linear-gradient(to right, #611616, #fb3131);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 0.77;
+      text-transform: uppercase;
+    }
+
+    i {
+      margin-top: 0.8vh;
+    }
+
+    .icons {
+      margin: 0 10px;
+    }
+}

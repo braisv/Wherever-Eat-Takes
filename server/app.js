@@ -58,7 +58,7 @@ const authRouter = require("./routes/auth");
 app.use("/auth", authRouter);
 
 const restaurantsRouter = require("./routes/restaurants");
-app.use("/auth", restaurantsRouter);
+app.use("/restaurants", restaurantsRouter);
 
 app.use((req, res) => {
   res.sendFile(__dirname + "/public/index.html");
