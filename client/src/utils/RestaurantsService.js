@@ -18,5 +18,9 @@ export default class RestaurantsService {
       .then(response => response.data)
   }
 
+  getOne = (id) => {
+    return this.service.get(`/restaurant/${id}`)
+      .then(response => response.data)
+  }
 
 }

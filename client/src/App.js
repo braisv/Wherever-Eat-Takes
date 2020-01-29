@@ -5,8 +5,8 @@ import Login from "./Components/Auth/Login";
 import AuthService from "./utils/AuthService";
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
-import User from "./Components/User/User"
 import Home from "./Components/Home/Home";
+import RestaurantDetails from "./Components/RestaurantDetails/RestaurantDetails";
 
 export default class App extends Component {
   constructor(props) {
@@ -50,9 +50,13 @@ export default class App extends Component {
     return (
       <div className="App app-container">
         <NavBar title="Wherever Eat Takes" user={this.state.loggedInUser} />
-        <Home />
         <div className="content">
           <Switch>
+          <Route
+              exact
+              path="/"
+              render={() => <Home getUser={this.getUser} />}
+            />
             <Route
               exact
               path="/signup"
@@ -62,6 +66,11 @@ export default class App extends Component {
               exact
               path="/login"
               render={() => <Login getUser={this.getUser} />}
+            />
+            <Route
+              exact
+              path="/restaurant/:restaurantId"
+              render={() => <RestaurantDetails getUser={this.getUser} />}
             />
           </Switch>
         </div>

@@ -19,8 +19,9 @@ a:-webkit-any-link {
   text-decoration-color: unset;
 }
 
-html, body {
+body {
   background: linear-gradient(to bottom, #581313, #e2dada);
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
 }

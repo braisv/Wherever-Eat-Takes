@@ -9,7 +9,7 @@ import "./NavBar.scss";
 
 const NavBar = ({ title, user }) => {
   const [open, setOpen] = React.useState(false);
-  const auth = new AuthService;
+  const auth = new AuthService();
 
   return (
     <nav className="navbar">

@@ -8,7 +8,11 @@ const userSchema = new Schema(
       unique: true
     },
     password: String,
-    favourites: [{
+    likes: [{
+        type: Schema.Types.ObjectId,
+        ref: "Restaurant"
+      }],
+    dislikes: [{
         type: Schema.Types.ObjectId,
         ref: "Restaurant"
       }]

@@ -473,22 +473,15 @@ let restaurant = restaurants.map(el => ({
   image: el.image,
   cuisine_type: el.cuisine_type,
   timetable: {
-    monday: el.operating_hours.Monday,
-    tuesday: el.operating_hours.Tuesday,
-    wednesday: el.operating_hours.Wednesday,
-    thursday: el.operating_hours.Thursday,
-    friday: el.operating_hours.Friday,
-    saturday: el.operating_hours.Saturday,
-    sunday: el.operating_hours.Sunday
+    Monday: el.operating_hours.Monday,
+    Tuesday: el.operating_hours.Tuesday,
+    Wednesday: el.operating_hours.Wednesday,
+    Thursday: el.operating_hours.Thursday,
+    Friday: el.operating_hours.Friday,
+    Saturday: el.operating_hours.Saturday,
+    Sunday: el.operating_hours.Sunday
   },
-  reviews: [
-    {
-      name: el.reviews.name,
-      date: el.reviews.date,
-      rating: el.reviews.rating,
-      comments: el.reviews.comments
-    }
-  ]
+  reviews: el.reviews.map(rev => rev)
 }));
 
 Restaurant.deleteMany()
@@ -496,7 +489,9 @@ Restaurant.deleteMany()
     return Restaurant.create(restaurant);
   })
   .then(restaurantsCreated => {
-    console.log(`${restaurantsCreated.length} restaurants created with the following id:`);
+    console.log(
+      `${restaurantsCreated.length} restaurants created with the following id:`
+    );
     console.log(restaurantsCreated.map(u => u._id));
   })
   .then(() => {
