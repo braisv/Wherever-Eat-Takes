@@ -1,0 +1,91 @@
+.restaurant-name {
+  background: black;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  padding: 10px;
+}
+
+.cuisine, .reviews {
+  font-size: 1.2rem;
+}
+
+.timetable {
+  background: #581313;
+  color: black;
+  font-size: 1.2rem;
+
+  ul {
+    list-style-type: none;
+    text-align: left;
+    padding: 20px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+    span {
+        color: white;
+        font-weight: 400;
+    }
+  }
+}
+
+.review-comments {
+    padding: 20px;
+
+    .name-review {
+        font-weight: bold;
+        color: #581313;
+        margin-bottom: 5px;
+    }
+
+    .comments-review {
+        margin-bottom: 10px;
+    }
+
+    .date-review, .rating-review {
+        display: none;
+    }
+}
+
+.restaurant-like {
+    background: rgba(255, 255, 255, 0.05);
+    text-align: center;
+    padding: 40px;
+    font-size: 1.4rem;
+}
+
+.favourite {
+    background: linear-gradient(to right, #16613b, #31fb9d);
+    text-align: center;
+    padding: 40px;
+    font-size: 1.4rem;
+}
+
+
+
+@media screen and (max-width: 700px) {
+  .image-restaurant {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+    .image-restaurant {
+     background: rgba(255, 255, 255, 0.05);
+     display: flex;
+     justify-content: center;
+     
+     img {
+         max-width: 100%;
+     }
+    }
+
+    .review-comments {
+        background: rgba(255, 255, 255, 0.05);
+    }
+  }
