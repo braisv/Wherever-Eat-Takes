@@ -5,15 +5,21 @@ import Login from "./Components/Auth/Login";
 import AuthService from "./utils/AuthService";
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
-import Home from "./Components/Home/Home";
 import RestaurantDetails from "./Components/RestaurantDetails/RestaurantDetails";
+import { fetchRestaurants } from "./actions/fetchData";
+import { connect } from "react-redux";
+import RestaurantGrid from "./Components/RestaurantGrid/RestaurantGrid";
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = { loggedInUser: null };
     this.service = new AuthService();
     this.fetchUser();
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchRestaurants());
   }
 
   getUser = userObj => {
@@ -47,6 +53,7 @@ export default class App extends Component {
   }
 
   render() {
+    console.log("APP PROPS: ", this.props)
     return (
       <div className="App app-container">
         <NavBar title="Wherever Eat Takes" user={this.state.loggedInUser} />
@@ -55,7 +62,7 @@ export default class App extends Component {
           <Route
               exact
               path="/"
-              render={() => <Home getUser={this.getUser} />}
+              render={() => <RestaurantGrid restaurants={this.props} getUser={this.getUser} />}
             />
             <Route
               exact
@@ -78,3 +85,11 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  restaurants: state.products.restaurants,
+  loading: state.products.loading,
+  error: state.products.error
+});
+
+export default connect(mapStateToProps)(App);

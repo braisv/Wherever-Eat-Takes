@@ -11,10 +11,10 @@ import {
     };
   }
   
-  export function fetchDataSuccess(item) {
+  export function fetchDataSuccess(restaurant) {
     return {
       type: FETCH_DATA_SUCCESS,
-      item
+      restaurant
     };
   }
   
@@ -25,32 +25,9 @@ import {
     };
   }
   
-  export function addToCart(itemname) {
+  export function fetchUser(user) {
     return {
-      type: ADD_TO_CART,
-      itemToBeAdded: itemname
+      type: FETCH_USER,
+      user
     };
   }
-  
-  export function add(itemname) {
-    return {
-      type: ADD,
-      itemInc: itemname
-    };
-  }
-  
-  export function subtract(itemname) {
-    return {
-      type: SUBTRACT,
-      itemDec: itemname
-    };
-  }
-  
-  export function removeItemFromCart(itemname, amount) {
-    return {
-      type: REMOVE_ITEM_FROM_CART,
-      itemToRemove: itemname,
-      amount: amount
-    };
-  }
-  

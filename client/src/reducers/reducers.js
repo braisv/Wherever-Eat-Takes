@@ -17,7 +17,7 @@ let initialState = {
         return {
           ...state,
           loading: false,
-          restaurants: action.restaurants
+          restaurants: action.restaurant
         };
       case "FETCH_DATA_ERROR":
         return {
