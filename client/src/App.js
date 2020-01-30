@@ -70,7 +70,7 @@ export default class App extends Component {
             <Route
               exact
               path="/restaurant/:restaurantId"
-              render={() => <RestaurantDetails getUser={this.getUser} />}
+              render={() => <RestaurantDetails user={this.state.loggedInUser} />}
             />
           </Switch>
         </div>

@@ -60,6 +60,9 @@ app.use("/auth", authRouter);
 const restaurantsRouter = require("./routes/restaurants");
 app.use("/restaurants", restaurantsRouter);
 
+const likesRouter = require("./routes/likes");
+app.use("/likes", likesRouter);
+
 app.use((req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
