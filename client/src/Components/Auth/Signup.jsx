@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import AuthService from "../../utils/AuthService";
 import { Link } from "react-router-dom";
+import "./Login.scss";
 
 class Signup extends Component {
   constructor(props) {
@@ -27,14 +28,15 @@ class Signup extends Component {
           username: "",
           password: "",
         });
-        console.log("USER: ", response.user);
         this.props.getUser(response.user);
+        this.props.history.push("/");
       })
       .catch(error => {
         console.log(error.message);
         this.setState({
           username: username,
           password: password,
+          invalidUsername: "Username already exists"
         });
       });
   };
@@ -54,7 +56,7 @@ class Signup extends Component {
 
     this.setState({
       ...this.state,
-      invalidUsername: "Use a valid username"
+      invalidUsername: "Invalid username"
     });
   };
 

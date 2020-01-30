@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./RestaurantGrid.scss";
 
 const RestaurantGrid = ({ restaurants }) => {
+
   return (
     <div className="container">
       <div className="restaurant-grid">

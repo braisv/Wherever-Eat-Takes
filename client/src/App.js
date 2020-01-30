@@ -9,6 +9,8 @@ import RestaurantDetails from "./Components/RestaurantDetails/RestaurantDetails"
 import { fetchRestaurants } from "./actions/fetchData";
 import { connect } from "react-redux";
 import RestaurantGrid from "./Components/RestaurantGrid/RestaurantGrid";
+import Search from "./Components/Search/Search";
+import FavouriteRestaurants from "./Components/Favourites/Favourites";
 
 class App extends Component {
   constructor(props) {
@@ -53,16 +55,25 @@ class App extends Component {
   }
 
   render() {
-    console.log("APP PROPS: ", this.props)
+    console.log(this.state.loggedInUser)
     return (
       <div className="App app-container">
-        <NavBar title="Wherever Eat Takes" user={this.state.loggedInUser} />
+        <NavBar
+          title="Wherever Eat Takes"
+          user={this.state.loggedInUser}
+          logout={() => this.logout()}
+        />
         <div className="content">
           <Switch>
-          <Route
+            <Route
               exact
               path="/"
-              render={() => <RestaurantGrid restaurants={this.props} getUser={this.getUser} />}
+              render={() => (
+                <RestaurantGrid
+                  restaurants={this.props}
+                  getUser={this.getUser}
+                />
+              )}
             />
             <Route
               exact
@@ -77,7 +88,26 @@ class App extends Component {
             <Route
               exact
               path="/restaurant/:restaurantId"
-              render={() => <RestaurantDetails user={this.state.loggedInUser} />}
+              render={() => (
+                <RestaurantDetails user={this.state.loggedInUser} />
+              )}
+            />
+            <Route
+              exact
+              path="/search"
+              render={() => (
+                <Search restaurants={this.props} getUser={this.getUser} />
+              )}
+            />
+            <Route
+              exact
+              path="/favourites"
+              render={() => (
+                <FavouriteRestaurants
+                  restaurants={this.props}
+                  user={this.state.loggedInUser}
+                />
+              )}
             />
           </Switch>
         </div>
@@ -87,6 +117,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.products.user,
   restaurants: state.products.restaurants,
   loading: state.products.loading,
   error: state.products.error

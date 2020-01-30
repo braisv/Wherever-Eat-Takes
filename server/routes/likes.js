@@ -6,7 +6,6 @@ likesRouter.post("/updateLike", (req, res, next) => {
     const updatedUserObj = req.body.updatedUserObj;
     User.findByIdAndUpdate(req.user._id, {$push:{likes:updatedUserObj}} , { new: true })
     .then(data => {
-      console.log('ADDED like', data)
       res.status(200).json(data);
     })
     .catch(err => console.log(err));

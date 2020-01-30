@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronCircleUp,
@@ -11,10 +12,11 @@ import RestaurantsService from "../../utils/RestaurantsService";
 import LikesService from "../../utils/LikesService";
 import "./RestaurantDetails.scss";
 
-const RestaurantDetails = ({ user }) => {
+const RestaurantDetails = ({ user, props }) => {
   const params = useParams().restaurantId;
   const restaurants = new RestaurantsService();
   const likes = new LikesService();
+  const history = useHistory();
   const [userLocal, setUser] = useState(user);
   const [restaurant, setRestaurant] = useState({});
   const [hidden, setHidden] = useState(true);
@@ -31,8 +33,6 @@ const RestaurantDetails = ({ user }) => {
       .getOne(params)
       .then(data => {
         setRestaurant(data);
-        console.log("USER LIKES: ", userLocal.likes)
-        console.log("ID RESTAURANT: ", data.id)
         userLocal.likes.includes(data.id)
           ? setFavourite(true)
           : setFavourite(false)
@@ -66,6 +66,8 @@ const RestaurantDetails = ({ user }) => {
   );
 
   const toggleButton = () => {
+    
+    if (!user) return history.push("/login");
     if (userLocal.likes.includes(restaurant.id)) {
       likes
         .removeUserLike(params)
@@ -73,8 +75,6 @@ const RestaurantDetails = ({ user }) => {
           user = data;
           setUser(data);
           setFavourite(false);
-          console.log("USER: ", user)
-          console.log("DATA: ", data)
         })
         .catch(e => console.log(e));
     } else {
@@ -84,8 +84,6 @@ const RestaurantDetails = ({ user }) => {
           user = data;
           setUser(data)
           setFavourite(true);
-          console.log("USER: ", user)
-          console.log("DATA: ", data)
         })
         .catch(e => console.log(e));
     }

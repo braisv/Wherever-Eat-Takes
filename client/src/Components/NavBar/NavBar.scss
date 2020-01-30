@@ -12,22 +12,32 @@ nav {
     height: 5vh;
   }
 
-    p {
-      font-size: 2.4rem;
-      font-weight: bold;
-      margin: 0 20px;
-      background: linear-gradient(to right, #611616, #fb3131);
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 0.77;
-      text-transform: uppercase;
-    }
+  p {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin: 0 20px;
+    background: linear-gradient(to right, #611616, #fb3131);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 0.77;
+    text-transform: uppercase;
+  }
 
-    i {
-      margin-top: 0.8vh;
-    }
+  i {
+    margin-top: 0.8vh;
+  }
 
-    .icons {
-      margin: 0 10px;
-    }
+  .icons {
+    margin: 0 10px;
+  }
+}
+
+.link {
+  margin: 0 2px;
+}
+
+@media (max-width: 576px) {
+  .min-width {
+    display: none;
+  }
 }

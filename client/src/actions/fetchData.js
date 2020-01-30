@@ -7,7 +7,6 @@ export function fetchRestaurants() {
     axios
       .get(`http://localhost:5000/restaurants/restaurants`)
       .then(response => {
-          console.log("PETICION RESPONSE: ", response.data)
         dispatch(fetchDataSuccess(response.data));
       })
       .catch(error => {

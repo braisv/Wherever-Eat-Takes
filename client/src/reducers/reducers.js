@@ -1,5 +1,4 @@
 let initialState = {
-    user: false,
     restaurants: [],
     loading: false,
     error: null
@@ -25,11 +24,6 @@ let initialState = {
           loading: false,
           error: action.payload.error,
           restaurants: []
-        };
-      case "FETCH_USER":
-        return {
-          ...state,
-          user: action.user
         };
       default:
         return state;

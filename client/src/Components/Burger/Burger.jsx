@@ -13,6 +13,10 @@ const StyledBurger = styled.button`
     outline: none;
   }
 
+  @media (min-width: 576px) {
+    display:none
+  }
+
   div {
     width: 2rem;
     height: 0.25rem;

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import AuthService from "../../utils/AuthService";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../../actions/fetchUser";
 import "./Login.scss";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
@@ -15,24 +18,28 @@ export default class Login extends Component {
     const username = this.state.username;
     const password = this.state.password;
 
-    this.service
-      .login(username, password)
-      .then(response => {
-        this.setState({
-          username: username,
-          password: password,
-          error: false
-        });
+    this.props.dispatch(login(username, password));
+    this.props.history.goBack();
 
-        this.props.getUser(response);
-      })
-      .catch(error => {
-        this.setState({
-          username: username,
-          password: password,
-          error: true
-        });
-      });
+    // this.props
+    //   .login(username, password)
+    //   .then(response => {
+    //     this.setState({
+    //       username: username,
+    //       password: password,
+    //       error: false
+    //     });
+
+    //     this.props.getUser(response);
+    //     
+    //   })
+    //   .catch(error => {
+    //     this.setState({
+    //       username: username,
+    //       password: password,
+    //       error: true
+    //     });
+    //   });
   };
 
   handleChange = event => {
@@ -86,9 +93,15 @@ export default class Login extends Component {
             <input className="submit-signup" type="submit" value="Log in" />
           </form>
 
-          <h1>{this.state.error ? "Error" : ""}</h1>
+          <p>{this.state.error ? "Wrong username or password" : ""}</p>
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.authentication.user,
+});
+
+export default connect(mapStateToProps)(withRouter(Login));

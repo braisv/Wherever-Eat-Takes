@@ -41,11 +41,11 @@ const StyledMenu = styled.nav`
   }
 `
 
-const Menu = ({open}) => {
+const Menu = ({ open, setOpen }) => {
     return (
-      <StyledMenu open={open}>
-        <Link className='link' to="/signup">Sign Up</Link>
-        <Link className='link' to="/login">Log in</Link>
+      <StyledMenu open={open} onClick={() => setOpen(!open)}>
+        <Link className='link' to="/">Home</Link>
+        <Link className='link' to="/favourites">Favourites</Link>
       </StyledMenu>
     )
 }
