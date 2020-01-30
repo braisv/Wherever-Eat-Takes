@@ -2,10 +2,7 @@ import {
     FETCH_DATA_REQUEST,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_ERROR,
-    ADD,
-    ADD_TO_CART,
-    SUBTRACT,
-    REMOVE_ITEM_FROM_CART
+    FETCH_USER
   } from "./actionType";
   
   export function fetchDataRequest() {
