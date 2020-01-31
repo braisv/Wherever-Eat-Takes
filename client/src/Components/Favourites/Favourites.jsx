@@ -40,7 +40,7 @@ const FavouriteRestaurants = ({ restaurants, user }) => {
         </div>
       </div>
     );
-  } else {
+  } else if (user && favourites.length <= 0) {
     render = (
       <div className="container">
         <div className="no-user flex">No favourite restaurants yet.</div>

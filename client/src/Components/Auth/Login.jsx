@@ -18,28 +18,25 @@ class Login extends Component {
     const username = this.state.username;
     const password = this.state.password;
 
-    this.props.dispatch(login(username, password));
-    this.props.history.goBack();
+    this.service
+      .login(username, password)
+      .then(response => {
+        this.setState({
+          username: username,
+          password: password,
+          error: false
+        });
 
-    // this.props
-    //   .login(username, password)
-    //   .then(response => {
-    //     this.setState({
-    //       username: username,
-    //       password: password,
-    //       error: false
-    //     });
-
-    //     this.props.getUser(response);
-    //     
-    //   })
-    //   .catch(error => {
-    //     this.setState({
-    //       username: username,
-    //       password: password,
-    //       error: true
-    //     });
-    //   });
+        this.props.getUser(response);
+        this.props.history.goBack();
+      })
+      .catch(error => {
+        this.setState({
+          username: username,
+          password: password,
+          error: true
+        });
+      });
   };
 
   handleChange = event => {

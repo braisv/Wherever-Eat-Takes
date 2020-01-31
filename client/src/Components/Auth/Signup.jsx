@@ -36,7 +36,6 @@ class Signup extends Component {
         this.setState({
           username: username,
           password: password,
-          invalidUsername: "Username already exists"
         });
       });
   };
