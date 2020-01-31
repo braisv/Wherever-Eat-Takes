@@ -89,6 +89,7 @@ const RestaurantDetails = ({ user, props }) => {
     }
   };
 
+  if (!restaurant) return <div className="spinner"><div class="lds-hourglass"></div></div>
   return (
     <div className="container-details">
       <div className="restaurant-name">{restaurant.name}</div>
