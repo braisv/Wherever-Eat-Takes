@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import RestaurantGrid from "./Components/RestaurantGrid/RestaurantGrid";
 import Search from "./Components/Search/Search";
 import FavouriteRestaurants from "./Components/Favourites/Favourites";
+import Edit from "./Components/Edit/Edit";
 
 class App extends Component {
   constructor(props) {
@@ -55,9 +56,12 @@ class App extends Component {
   }
 
   render() {
-
-
-  if (!this.props.restaurants) return <div className="spinner"><div class="lds-hourglass"></div></div>
+    if (!this.props.restaurants)
+      return (
+        <div className="spinner">
+          <div class="lds-hourglass"></div>
+        </div>
+      );
     return (
       <div className="App app-container">
         <NavBar
@@ -111,6 +115,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/edit" render={() => <Edit />} />
           </Switch>
         </div>
       </div>

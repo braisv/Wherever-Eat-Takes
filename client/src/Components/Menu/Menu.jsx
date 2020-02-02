@@ -46,6 +46,7 @@ const Menu = ({ open, setOpen }) => {
       <StyledMenu open={open} onClick={() => setOpen(!open)}>
         <Link className='link' to="/">Home</Link>
         <Link className='link' to="/favourites">Favourites</Link>
+        <Link className='link' to="/edit">Edit Restaurants</Link>
       </StyledMenu>
     )
 }
