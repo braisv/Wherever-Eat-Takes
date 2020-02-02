@@ -1,28 +1,52 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
+import { removeRestaurant } from "../../actions/fetchData";
+import "./Edit.scss";
 
-const Edit = ({ restaurants }) => {
-    const [search, setSearch] = useState("");
-    let filteredRestaurants;
-  
-    filteredRestaurants = restaurants.filter(el =>
-      el.name.toLowerCase().includes(search.toLowerCase())
-    );
+const Edit = ({ restaurants, removeRestaurant }) => {
+  const [search, setSearch] = useState("");
+  let filteredRestaurants;
+
+  filteredRestaurants = restaurants.filter(el =>
+    el.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className="container">
-              <input
-        type="text"
-        name="searchbar"
-        placeholder="Search restaurants"
-        className="searchbar"
-        onChange={e => setSearch(e.target.value)}
-      />
-      <ul>
-        {filteredRestaurants.map((place, i) => (
-          <li key={i}>{place.name}</li>
-        ))}
-      </ul>
+    <div className="edit-container flex-column">
+      <div className="section-1 flex-column">
+        <input
+          type="text"
+          name="searchbar"
+          placeholder="Search restaurants"
+          className="searchbar"
+          onChange={e => setSearch(e.target.value)}
+        />
+        <div className="flex edit-options">
+          <span>Add Restaurant</span>
+          <span>Remove</span>
+        </div>
+      </div>
+      <div className="section-2">
+        <ul>
+          {filteredRestaurants.map((place, i) => (
+            <li key={i}>
+              <div className="flex button-edit">
+                {place.name}{" "}
+                <div>
+                  <FontAwesomeIcon icon={faPen} size="2x" />
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    size="2x"
+                    onClick={() => removeRestaurant(place.id)}
+                  />
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
@@ -33,4 +57,6 @@ const mapStateToProps = state => ({
   error: state.products.error
 });
 
-export default connect(mapStateToProps)(Edit);
+const mapDispatchToProps = { removeRestaurant };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Edit);

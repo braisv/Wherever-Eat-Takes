@@ -30,7 +30,9 @@ restaurantsRouter.post('/remove/:id', (req, res, next) => {
   const restaurantID = req.params.id
   Restaurant
     .findByIdAndRemove({ _id : restaurantID })
-    .then(theRestaurant => res.json(theRestaurant))
+    .then(theRestaurant => {
+      res.json(theRestaurant)
+    })
 });
 
 restaurantsRouter.post('/edit/:id', (req, res, next) => {

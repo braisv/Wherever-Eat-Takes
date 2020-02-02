@@ -47,9 +47,9 @@ export default class RestaurantsService {
       .then(response => response.data);
   };
 
-  removeRestaurant = restaurant => {
+  removeRestaurant = (id) => {
     return this.service
-      .post(`/remove`, { restaurant })
+      .post(`/remove/${id}`)
       .then(response => response.data);
   };
 

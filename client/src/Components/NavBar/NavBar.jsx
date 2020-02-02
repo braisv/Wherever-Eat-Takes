@@ -8,6 +8,7 @@ import {
   faSearch,
   faSignOutAlt,
   faHome,
+  faPen,
   faStar
 } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.scss";
@@ -28,14 +29,17 @@ const NavBar = ({ title, user, logout }) => {
           <Link className="link min-width" to="/favourites">
             <FontAwesomeIcon icon={faStar} size="3x" />
           </Link>
+          <Link className="link min-width" to="/edit">
+            <FontAwesomeIcon icon={faPen} size="3x" />
+          </Link>
           <Link className="link" to="/search">
             <FontAwesomeIcon icon={faSearch} size="3x" />
           </Link>
-        </span>
+          </span>
         {user ? (
           <FontAwesomeIcon icon={faSignOutAlt} size="3x" onClick={logout} />
-        ) : (
-          <Link className="link" to="/login">
+          ) : (
+            <Link className="link" to="/login">
             <FontAwesomeIcon icon={faUserCircle} size="3x" />
           </Link>
         )}

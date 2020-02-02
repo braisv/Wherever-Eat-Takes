@@ -25,6 +25,11 @@ let initialState = {
           error: action.payload.error,
           restaurants: []
         };
+      case "REMOVE_RESTAURANT":
+        return {
+          ...state,
+          loading: false
+        }
       default:
         return state;
     }

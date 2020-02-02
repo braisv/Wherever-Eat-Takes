@@ -1,5 +1,5 @@
 import RestaurantsService from "../utils/RestaurantsService";
-import { fetchDataRequest, fetchDataSuccess, fetchDataError } from "./action";
+import { fetchDataRequest, fetchDataSuccess, fetchDataError, removeSuccess } from "./action";
 
 let service = new RestaurantsService();
 
@@ -89,7 +89,15 @@ export function removeRestaurant(id) {
 
     service.removeRestaurant(id).then(
       restaurant => {
-        dispatch(fetchDataSuccess(restaurant));
+        dispatch(removeSuccess(restaurant));
+        service.getAll().then(
+          restaurants => {
+            dispatch(fetchDataSuccess(restaurants));
+          },
+          error => {
+            dispatch(fetchDataError(error));
+          }
+        );
       },
       error => {
         dispatch(fetchDataError(error));

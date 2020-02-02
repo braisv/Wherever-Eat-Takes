@@ -29,6 +29,8 @@ nav {
 
   .icons {
     margin: 0 10px;
+    display: flex;
+    flex-wrap: nowrap;
   }
 }
 
@@ -36,7 +38,7 @@ nav {
   margin: 0 2px;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
   .min-width {
     display: none;
   }

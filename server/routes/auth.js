@@ -61,7 +61,6 @@ router.post("/signup", (req, res, next) => {
       .then(user => {
         login(req, user)
           .then(() => {
-            console.log("WIN");
             res.json({ status: "signup & login successfully", user });
           })
           .catch(error => {

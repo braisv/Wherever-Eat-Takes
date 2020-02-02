@@ -6,6 +6,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  REMOVE_RESTAURANT,
   LOGOUT
 } from "./actionType";
 
@@ -26,6 +27,13 @@ export function fetchDataError(error) {
   return {
     type: FETCH_DATA_ERROR,
     payload: { error }
+  };
+}
+
+export function removeSuccess(restaurant) {
+  return {
+    type: REMOVE_RESTAURANT,
+    restaurant
   };
 }
 

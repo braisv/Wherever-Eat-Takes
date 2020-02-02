@@ -1,0 +1,44 @@
+.edit-container {
+  .section-1 {
+    width: 100%;
+    background: black;
+    padding-bottom: 10px;
+
+    .edit-options {
+      width: 100%;
+      color: white;
+      justify-content: space-around;
+      text-transform: uppercase;
+      font-weight: bold;
+      span {
+        padding-top: 15px;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .section-2 {
+    margin: 20px;
+    width: 100%;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        .button-edit {
+          font-size: 1.2rem;
+          justify-content: space-between;
+          padding: 10px 40px;
+        }
+
+        :hover {
+          background: rgba(255, 255, 255, 0.25);
+        }
+
+        svg {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
