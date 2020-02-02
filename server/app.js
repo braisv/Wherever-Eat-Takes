@@ -21,7 +21,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // ================================================ ACTUALIZAR ===================================================
-let whitelist = [process.env.CLIENT_URL];
+let whitelist = [process.env.CLIENT_URL, 'https://wherever-eat-takes.herokuapp.com'];
 let corsOptions = {
   origin: function(origin, callback) {
     let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
