@@ -5,6 +5,12 @@ import "./RestaurantGrid.scss";
 
 const RestaurantGrid = ({ restaurants }) => {
   
+  if (!restaurants[0])
+  return (
+    <div className="spinner">
+      <div class="lds-hourglass"></div>
+    </div>
+  );
   return (
     <div className="container">
       <div className="restaurant-grid">

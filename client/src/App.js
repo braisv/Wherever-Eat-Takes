@@ -56,12 +56,6 @@ class App extends Component {
   }
 
   render() {
-    if (!this.props.restaurants)
-      return (
-        <div className="spinner">
-          <div class="lds-hourglass"></div>
-        </div>
-      );
     return (
       <div className="App app-container">
         <NavBar

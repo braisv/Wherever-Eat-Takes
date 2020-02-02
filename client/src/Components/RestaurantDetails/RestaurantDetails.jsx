@@ -12,7 +12,7 @@ import RestaurantsService from "../../utils/RestaurantsService";
 import LikesService from "../../utils/LikesService";
 import "./RestaurantDetails.scss";
 
-const RestaurantDetails = ({ user, props }) => {
+const RestaurantDetails = ({ user }) => {
   const params = useParams().restaurantId;
   const restaurants = new RestaurantsService();
   const likes = new LikesService();
@@ -40,7 +40,7 @@ const RestaurantDetails = ({ user, props }) => {
       .catch(e => console.log(e));
   }, []);
 
-  if (restaurant.timetable) {
+  if (restaurant.reviews) {
     timetable = restaurant.timetable;
     reviews = restaurant.reviews;
   }
@@ -54,6 +54,7 @@ const RestaurantDetails = ({ user, props }) => {
     );
   }
 
+  if (timetable) {
   daily = (
     <ul>
       {Object.keys(timetable).map(key => (
@@ -64,6 +65,7 @@ const RestaurantDetails = ({ user, props }) => {
       ))}
     </ul>
   );
+      }
 
   const toggleButton = () => {
     
@@ -89,7 +91,7 @@ const RestaurantDetails = ({ user, props }) => {
     }
   };
 
-  if (!restaurant) return <div className="spinner"><div class="lds-hourglass"></div></div>
+  if (!restaurant.image) return <div className="spinner"><div class="lds-hourglass"></div></div>
   return (
     <div className="container-details">
       <div className="restaurant-name">{restaurant.name}</div>
