@@ -91,7 +91,7 @@ const RestaurantDetails = ({ user }) => {
     }
   };
 
-  if (!restaurant.image) return <div className="spinner"><div class="lds-hourglass"></div></div>
+  if (!restaurant.image) return <div className="content spinner"><div class="lds-hourglass"></div></div>
   return (
     <div className="container-details">
       <div className="restaurant-name">{restaurant.name}</div>

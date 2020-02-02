@@ -3,7 +3,7 @@ import axios from 'axios';
 export default class LikesService {
   constructor() {
     this.service = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/likes`,
+      baseURL: `${process.env.REACT_APP_URL}/likes`,
       withCredentials: true
     });
   }

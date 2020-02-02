@@ -21,7 +21,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // ================================================ ACTUALIZAR ===================================================
-let whitelist = [process.env.CLIENT_URL, 'https://wherever-eat-takes.herokuapp.com'];
+let whitelist = [process.env.CLIENT_URL, 'http://localhost:5000', 'https://wherever-eat-takes.herokuapp.com'];
 let corsOptions = {
   origin: function(origin, callback) {
     let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -42,7 +42,7 @@ app.use(cookieParser());
 app.locals.title = 'Wherever it Takes API';
 
 app.use(session({
-  secret: 'store passport',
+  secret: 'wet app',
   resave: true,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })

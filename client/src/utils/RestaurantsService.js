@@ -3,7 +3,7 @@ import axios from "axios";
 export default class RestaurantsService {
   constructor() {
     this.service = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/restaurants`,
+      baseURL: `${process.env.REACT_APP_URL}/restaurants`,
       withCredentials: true
     });
   }
@@ -14,6 +14,7 @@ export default class RestaurantsService {
   // }
 
   getAll = () => {
+    console.log(`${process.env.REACT_APP_URL}/restaurants`)
     return this.service.get(`/restaurants`).then(response => response.data);
   };
 
