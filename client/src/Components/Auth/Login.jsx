@@ -3,7 +3,7 @@ import AuthService from "../../utils/AuthService";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../../actions/fetchUser";
+// import { login } from "../../actions/fetchUser";
 import "./Login.scss";
 
 class Login extends Component {

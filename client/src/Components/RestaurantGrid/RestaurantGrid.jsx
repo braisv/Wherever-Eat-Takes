@@ -7,8 +7,8 @@ const RestaurantGrid = ({ restaurants }) => {
   
   if (!restaurants[0])
   return (
-    <div className="spinner">
-      <div class="lds-hourglass"></div>
+    <div className="content spinner">
+      <div className="lds-hourglass"></div>
     </div>
   );
   return (

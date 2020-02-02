@@ -38,6 +38,8 @@ const RestaurantDetails = ({ user }) => {
           : setFavourite(false)
       })
       .catch(e => console.log(e));
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (restaurant.reviews) {
@@ -48,8 +50,9 @@ const RestaurantDetails = ({ user }) => {
   if (reviews.length > 0) {
     printReviews = reviews.map(el =>
       Object.keys(el).map(key => {
-        if (key != "_id")
+        if (key !== "_id") {
           return <div className={key + "-review"}>{el[key]}</div>;
+        } else { return null }
       })
     );
   }
@@ -57,8 +60,8 @@ const RestaurantDetails = ({ user }) => {
   if (timetable) {
   daily = (
     <ul>
-      {Object.keys(timetable).map(key => (
-        <li>
+      {Object.keys(timetable).map( (key, i) => (
+        <li key={i}>
           <span>{key + ": "}</span>
           {timetable[key]}
         </li>
@@ -91,7 +94,7 @@ const RestaurantDetails = ({ user }) => {
     }
   };
 
-  if (!restaurant.image) return <div className="content spinner"><div class="lds-hourglass"></div></div>
+  if (!restaurant.image) return <div className="content spinner"><div className="lds-hourglass"></div></div>
   return (
     <div className="container-details">
       <div className="restaurant-name">{restaurant.name}</div>

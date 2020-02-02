@@ -14,7 +14,6 @@ export default class RestaurantsService {
   // }
 
   getAll = () => {
-    console.log(`${process.env.REACT_APP_URL}/restaurants`)
     return this.service.get(`/restaurants`).then(response => response.data);
   };
 

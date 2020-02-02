@@ -4,18 +4,17 @@ import "./Favourites.scss";
 
 const FavouriteRestaurants = ({ restaurants, user }) => {
   const [favourites, setFavourites] = useState([]);
-  let list = [];
-
-  if (user) {
-    list = restaurants.restaurants.filter(el => {
-      if (user.likes.includes(el.id)) {
-        return el;
-      }
-    });
-  }
 
   useEffect(() => {
+    let list = [];
+
+    if (user) {
+      restaurants.restaurants.filter(el => {
+        return user.likes.includes(el.id) ? list.push(el) : []
+      });
+    }
         setFavourites(list)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
