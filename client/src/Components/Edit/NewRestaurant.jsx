@@ -1,4 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import "./Options/Form.scss";
+import NameInput from './Options/NameInput';
+import ImageInput from './Options/ImageInput';
+import CuisineInput from './Options/Cuisine_typeInput';
 
 const NewRestaurant = () => {
 const [megaState, setMegaState] = useState({
@@ -31,8 +35,11 @@ const [megaState, setMegaState] = useState({
 
 
     return (
-        <div>
-            
+        <div className="restaurant-form flex-column">
+            <h1>RESTAURANT DATA:</h1>
+            <NameInput state={megaState} setState={setMegaState} />
+            <ImageInput state={megaState} setState={setMegaState} />
+            <CuisineInput state={megaState} setState={setMegaState} />
         </div>
     )
 }

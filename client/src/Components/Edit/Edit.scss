@@ -18,21 +18,39 @@
   }
 
   .section-2 {
-    margin: 20px;
+    display: relative;
     width: 100%;
 
     ul {
       list-style-type: none;
-
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      grid-auto-rows: minmax(60px, auto);
+      align-items: center;
+      
       li {
-        .button-edit {
-          font-size: 1.2rem;
-          justify-content: space-between;
-          padding: 10px 40px;
-        }
+        background: rgba(255, 255, 255, 0.3);
+        height: max-content;
+        box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.15);
 
         :hover {
-          background: rgba(255, 255, 255, 0.25);
+          background: rgba(255, 255, 255, 0.75);
+        }
+
+        .button-edit {
+          height: 60px;
+          font-size: 1.2rem;
+          justify-content: space-between;
+          padding: 10px 20px;
+          font-weight: bold;
+
+          div {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            background: none;
+          }
         }
 
         svg {
