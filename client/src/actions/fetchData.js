@@ -1,5 +1,5 @@
 import RestaurantsService from "../utils/RestaurantsService";
-import { fetchDataRequest, fetchDataSuccess, fetchDataError, removeSuccess } from "./action";
+import { fetchDataRequest, fetchDataSuccess, fetchDataError, removeSuccess, newSuccess } from "./action";
 
 let service = new RestaurantsService();
 
@@ -58,7 +58,9 @@ export function newRestaurant(
   timetable,
   reviews
 ) {
+  console.log("PETICION ACTION")
   return dispatch => {
+    console.log("DISPATCH PASO 1 ACTION")
     dispatch(fetchDataRequest({ name }));
 
     service
@@ -74,9 +76,19 @@ export function newRestaurant(
       )
       .then(
         restaurant => {
-          dispatch(fetchDataSuccess(restaurant));
+          console.log("SUCCESS ACTION")
+          dispatch(newSuccess(restaurant));
+          service.getAll().then(
+            restaurants => {
+              dispatch(fetchDataSuccess(restaurants));
+            },
+            error => {
+              dispatch(fetchDataError(error));
+            }
+          );
         },
         error => {
+          console.log("ACTION ERROR")
           dispatch(fetchDataError(error));
         }
       );

@@ -33,6 +33,7 @@ export default class RestaurantsService {
     timetable,
     reviews
   ) => {
+    console.log("SERVICE")
     return this.service
       .post(`/new`, {
         name,

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
-import { removeRestaurant } from "../../actions/fetchData";
+import { removeRestaurant, fetchRestaurants } from "../../actions/fetchData";
 import NewRestaurant from "./NewRestaurant";
 import "./Edit.scss";
 
@@ -11,6 +11,11 @@ const Edit = ({ restaurants, removeRestaurant }) => {
   const [edit, setEdit] = useState(false);
   const [remove, setRemove] = useState(false);
   const [add, setAdd] = useState(true);
+
+  const addedRestaurant = () => {
+    setAdd(false)
+    fetchRestaurants()
+  }
 
   let filteredRestaurants;
 
@@ -34,7 +39,7 @@ const Edit = ({ restaurants, removeRestaurant }) => {
           <span onClick={() => setEdit(!edit)}>Edit</span>
         </div>
       </div>
-        {add ? <NewRestaurant /> : ""}
+        {add ? <NewRestaurant addedRestaurant={addedRestaurant} /> : ""}
       <div className="section-2 flex">
         <ul className="restaurant-grid">
           {filteredRestaurants.map((place, i) => (
@@ -64,6 +69,6 @@ const mapStateToProps = state => ({
   error: state.products.error
 });
 
-const mapDispatchToProps = { removeRestaurant };
+const mapDispatchToProps = { removeRestaurant, fetchRestaurants };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);

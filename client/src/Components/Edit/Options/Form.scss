@@ -35,4 +35,40 @@
         }
     }
 
+    .object-input {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+
+        h2 {
+            margin: 5px;
+        }
+
+        label {
+            background: rgba(0, 0, 0, 0.3);
+            width: 170px;
+            height: 100%;
+            padding: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            margin-right: 20px;
+            padding: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px 20px;
+            border: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 20px;
+            cursor: pointer;
+        }
+    }
+
 }

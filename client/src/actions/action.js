@@ -7,6 +7,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   REMOVE_RESTAURANT,
+  NEW_RESTAURANT,
   LOGOUT
 } from "./actionType";
 
@@ -33,6 +34,13 @@ export function fetchDataError(error) {
 export function removeSuccess(restaurant) {
   return {
     type: REMOVE_RESTAURANT,
+    restaurant
+  };
+}
+
+export function newSuccess(restaurant) {
+  return {
+    type: NEW_RESTAURANT,
     restaurant
   };
 }
