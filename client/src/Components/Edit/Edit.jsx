@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 import { removeRestaurant, fetchRestaurants } from "../../actions/fetchData";
 import NewRestaurant from "./NewRestaurant";
 import "./Edit.scss";
 
-const Edit = ({ restaurants, removeRestaurant }) => {
+const Edit = ({ restaurants, removeRestaurant, fetchRestaurants }) => {
   const [search, setSearch] = useState("");
   const [edit, setEdit] = useState(false);
   const [remove, setRemove] = useState(false);
-  const [add, setAdd] = useState(true);
+  const [add, setAdd] = useState(false);
+  const history = useHistory();
 
   const addedRestaurant = () => {
     setAdd(false)
     fetchRestaurants()
+  }
+
+  const editPlace = (id) => {
+    history.push(`/edit/${id}`)
   }
 
   let filteredRestaurants;
@@ -45,9 +51,11 @@ const Edit = ({ restaurants, removeRestaurant }) => {
           {filteredRestaurants.map((place, i) => (
             <li key={i}>
               <div className="flex button-edit">
+              <Link to={`/restaurant/${place.id}`} restaurant={place}>
                 {place.name}{" "}
+              </Link>
                 <div>
-                  {edit ? <FontAwesomeIcon icon={faPen} size="2x" /> : ""}
+                  {edit ? <FontAwesomeIcon icon={faPen} onClick={() => editPlace(place.id)} size="2x" /> : ""}
                   {remove ? <FontAwesomeIcon
                     icon={faTrash}
                     size="2x"

@@ -12,6 +12,7 @@ import RestaurantGrid from "./Components/RestaurantGrid/RestaurantGrid";
 import Search from "./Components/Search/Search";
 import FavouriteRestaurants from "./Components/Favourites/Favourites";
 import Edit from "./Components/Edit/Edit";
+import NewRestaurant from "./Components/Edit/NewRestaurant";
 
 class App extends Component {
   constructor(props) {
@@ -110,6 +111,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/edit" render={() => <Edit />} />
+            <Route exact path="/edit/:restaurantId" render={() => <NewRestaurant />} />
           </Switch>
         </div>
       </div>

@@ -35,6 +35,17 @@
         }
     }
 
+    button {
+        background: rgba(77, 212, 95, 0.4);
+        padding: 10px 20px;
+        border: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 20px;
+        margin-bottom: 0;
+        cursor: pointer;
+    }
+
     .object-input {
         display: flex;
         flex-direction: column;
@@ -62,13 +73,9 @@
 
         button {
             background: rgba(255, 255, 255, 0.4);
-            padding: 10px 20px;
-            border: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin: 20px;
-            cursor: pointer;
         }
+
+
     }
 
 }

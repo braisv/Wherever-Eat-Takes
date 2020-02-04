@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ReviewsInput = ({ state, setState }) => {
   const [reviews, setReviews] = useState([]);
@@ -21,6 +21,13 @@ const ReviewsInput = ({ state, setState }) => {
     });
   };
 
+  useEffect(() => {
+        setReviews(state.reviews);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.id])
+
+
   let printForms = reviews.map((el, i) => (
     <React.Fragment key={i}>
       <div>
@@ -29,6 +36,7 @@ const ReviewsInput = ({ state, setState }) => {
           type="text"
           name="name"
           onChange={e => updateReviews(e.target, i)}
+          value={el.name}
         />
       </div>
       <div>
@@ -38,6 +46,7 @@ const ReviewsInput = ({ state, setState }) => {
           rows="10"
           name="comments"
           onChange={e => updateReviews(e.target, i)}
+          value={el.comments}
         />
       </div>
     </React.Fragment>
@@ -45,10 +54,12 @@ const ReviewsInput = ({ state, setState }) => {
 
   return (
     <div className="object-input">
+      <h2>Reviews:</h2>
+      {state.id ? printForms : " "}
+      {reviews && !state.id ? printForms : ""}
       <button onClick={() => setReviews([...reviews, "new"])}>
         Add Review
       </button>
-      {reviews ? printForms : ""}
     </div>
   );
 };

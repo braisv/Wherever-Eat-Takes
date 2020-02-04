@@ -11,8 +11,13 @@
       text-transform: uppercase;
       font-weight: bold;
       span {
-        padding-top: 15px;
+        padding: 5px 15px;
+        margin-top: 15px;
         font-size: 1.4rem;
+        cursor: pointer;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
       }
     }
   }

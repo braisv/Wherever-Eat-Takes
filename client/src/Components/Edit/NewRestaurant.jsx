@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import "./Options/Form.scss";
-import { fetchRestaurants } from "../../actions/fetchData";
 import RestaurantsService from "../../utils/RestaurantsService";
 import NameInput from "./Options/NameInput";
 import ImageInput from "./Options/ImageInput";
@@ -9,7 +8,9 @@ import CuisineInput from "./Options/Cuisine_typeInput";
 import Timetable from "./Options/Timetable";
 import ReviewsInput from "./Options/ReviewsInput";
 
-const NewRestaurant = ({ restaurants, addedRestaurant }) => {
+const NewRestaurant = ({ addedRestaurant }) => {
+  const params = useParams().restaurantId;
+  const history = useHistory();
   const [megaState, setMegaState] = useState({
     name: "",
     neighborhood: "",
@@ -29,19 +30,23 @@ const NewRestaurant = ({ restaurants, addedRestaurant }) => {
       saturday: "",
       sunday: ""
     },
-    reviews: [
-      {
-        name: "",
-        date: "",
-        rating: 0,
-        comments: ""
-      }
-    ]
+    reviews: []
   });
 
   const service = new RestaurantsService();
 
-  const addRestaurant = (    
+  useEffect(() => {
+    service
+      .getOne(params)
+      .then(data => {
+        setMegaState(data);
+      })
+      .catch(e => console.log(e));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const addRestaurant = (
     name,
     neighborhood,
     photograph,
@@ -50,22 +55,46 @@ const NewRestaurant = ({ restaurants, addedRestaurant }) => {
     cuisine_type,
     timetable,
     reviews
-    ) => {
-        service.newRestaurant(
-            name,
-            neighborhood,
-            photograph,
-            location,
-            image,
-            cuisine_type,
-            timetable,
-            reviews
-        )
-       addedRestaurant()
-    }
+  ) => {
+    service
+      .newRestaurant(
+        name,
+        neighborhood,
+        photograph,
+        location,
+        image,
+        cuisine_type,
+        timetable,
+        reviews
+      )
+      .then(() => addedRestaurant());
+  };
 
-  console.log("NEW RESTAURANT: ", megaState);
-  console.log("NEW STATE: ", restaurants)
+  const modifyRestaurant = (
+    id,
+    name,
+    neighborhood,
+    photograph,
+    location,
+    image,
+    cuisine_type,
+    timetable,
+    reviews
+  ) => {
+    service
+      .editRestaurant(
+        id,
+        name,
+        neighborhood,
+        photograph,
+        location,
+        image,
+        cuisine_type,
+        timetable,
+        reviews
+      )
+      .then(() => history.push(`/restaurant/${params}`));
+  };
 
   return (
     <div className="restaurant-form flex-column">
@@ -76,17 +105,31 @@ const NewRestaurant = ({ restaurants, addedRestaurant }) => {
       <Timetable state={megaState} setState={setMegaState} />
       <ReviewsInput state={megaState} setState={setMegaState} />
       <button
-        onClick={() =>
-          addRestaurant(
-            megaState.name,
-            megaState.neighborhood,
-            megaState.photograph,
-            megaState.location,
-            megaState.image,
-            megaState.cuisine_type,
-            megaState.timetable,
-            megaState.reviews
-          )
+        onClick={
+          megaState.id
+            ? () =>
+                modifyRestaurant(
+                  megaState.id,
+                  megaState.name,
+                  megaState.neighborhood,
+                  megaState.photograph,
+                  megaState.location,
+                  megaState.image,
+                  megaState.cuisine_type,
+                  megaState.timetable,
+                  megaState.reviews
+                )
+            : () =>
+                addRestaurant(
+                  megaState.name,
+                  megaState.neighborhood,
+                  megaState.photograph,
+                  megaState.location,
+                  megaState.image,
+                  megaState.cuisine_type,
+                  megaState.timetable,
+                  megaState.reviews
+                )
         }
       >
         SUBMIT RESTAURANT
@@ -95,12 +138,4 @@ const NewRestaurant = ({ restaurants, addedRestaurant }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  restaurants: state.products.restaurants,
-  loading: state.products.loading,
-  error: state.products.error
-});
-
-const mapDispatchToProps = { fetchRestaurants };
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewRestaurant);
+export default NewRestaurant;
